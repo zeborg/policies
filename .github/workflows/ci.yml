@@ -48,15 +48,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
-
-      - name: Set CLI_PATH
-        run: CLI_PATH=kyverno/cmd/cli/kubectl-kyverno
-
       - name: PWD
         run: pwd
 
-      - name: PWD
-        run: ls $PWD/$CLI_PATH
+      - name: List directories in PWD/CLI_PATH
+        run: |
+          CLI_PATH=kyverno/cmd/cli/kubectl-kyverno
+          ls $PWD/$CLI_PATH
 
       - name: Test Policy
         run: go run $PWD/$CLI_PATH/main.go test .
