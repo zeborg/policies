@@ -24,7 +24,7 @@ jobs:
         run: ls
 
       - name: List directories in PWD/kyverno
-        run: ls kyverno
+        run: ls $PWD/kyverno
 
       - name: Check if the CLI main.go file exists
         run: ls kyverno/cmd/cli/kubectl-kyverno
