@@ -17,6 +17,7 @@ jobs:
       - name: Clone Kyverno
         run:
           pwd
+          ls
           git clone https://github.com/kyverno/kyverno --branch main
 
       - name: Checkout
@@ -41,10 +42,11 @@ jobs:
       - name: Test Policy
         run:
           pwd
+          ls
 
-          CLI_PATH=../kyverno/cmd/cli/kubectl-kyverno
+          CLI_PATH=./kyverno/cmd/cli/kubectl-kyverno
 
-          go run $PWD/$CLI_PATH/main.go test .
+          go run $CLI_PATH/main.go test .
       
   # build:
   #   runs-on: ubuntu-latest
