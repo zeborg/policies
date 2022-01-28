@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Kyverno
-        run: |
+        run:
+          pwd
           git clone https://github.com/kyverno/kyverno --branch main
 
       - name: Checkout
