@@ -32,7 +32,7 @@ jobs:
 
       - name: Test Policy
         run: |
-          cd $PWD/kyverno
+          cd kyverno
           go run cmd/cli/kubectl-kyverno/main.go test .
       
   # build:
