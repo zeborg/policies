@@ -3,15 +3,21 @@ name: Policy Test
 on:
   push:
     branches:
+      - master
       - ci-test
   pull_request:
     branches:
+      - master
       - ci-test
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Clone Kyverno
+        run: |
+          git clone https://github.com/kyverno/kyverno --branch main
+
       - name: Checkout
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
 
@@ -32,15 +38,7 @@ jobs:
             ${{ runner.os }}-go-
 
       - name: Test Policy
-        run: |
-          if [[ ${{ github.event_name }} == "push" ]]
-          then
-            GIT_BRANCH=${GITHUB_REF##*/}
-          elif [[ ${{ github.event_name }} == "pull_request" ]]
-          then
-            GIT_BRANCH=${{ github.event.pull_request.base.ref }}
-          fi
-
+        run:
           CLI_PATH=cmd/cli/kubectl-kyverno
 
           go run $PWD/$CLI_PATH/main.go test .
