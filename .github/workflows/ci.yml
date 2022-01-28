@@ -26,6 +26,10 @@ jobs:
         run:
           ls
 
+      - name: List directories in PWD/kyverno
+        run:
+          ls kyverno
+
       - name: Checkout
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
 
