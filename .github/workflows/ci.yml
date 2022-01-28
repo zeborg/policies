@@ -39,7 +39,9 @@ jobs:
 
       - name: Test Policy
         run:
-          CLI_PATH=kyverno/cmd/cli/kubectl-kyverno
+          pwd
+
+          CLI_PATH=../kyverno/cmd/cli/kubectl-kyverno
 
           go run $PWD/$CLI_PATH/main.go test .
       
