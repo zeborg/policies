@@ -19,6 +19,9 @@ jobs:
         with:
           path: policies
 
+      - name: Echo push branch name
+        run: echo ${GITHUB_REF##*/}
+
       - name: Clone Kyverno
         run: |
           if [[ ${{ github.event_name }} == "push" ]]
