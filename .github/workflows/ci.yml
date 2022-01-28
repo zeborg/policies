@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+        with:
+          path: policies
 
       - name: Clone Kyverno
         run: git clone https://github.com/kyverno/kyverno --branch main
@@ -39,7 +41,7 @@ jobs:
       - name: Test Policy
         run: |
           cd kyverno
-          go run cmd/cli/kubectl-kyverno/main.go test ../
+          go run cmd/cli/kubectl-kyverno/main.go test ../policies
       
   # build:
   #   runs-on: ubuntu-latest
