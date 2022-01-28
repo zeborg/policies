@@ -17,24 +17,6 @@ jobs:
       - name: Clone Kyverno
         run: git clone https://github.com/kyverno/kyverno --branch main
 
-      - name: Present working directory
-        run: pwd
-
-      - name: List directories in PWD
-        run: ls
-
-      - name: List directories in PWD/kyverno
-        run: ls $PWD/kyverno
-
-      - name: Check if the CLI main.go file exists
-        run: ls kyverno/cmd/cli/kubectl-kyverno
-
-      - name: Checkout
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
-
-      - name: Unshallow
-        run: git fetch --prune --unshallow
-
       - name: Set up Go 
         uses: actions/setup-go@424fc82d43fa5a37540bae62709ddcc23d9520d4 # v2.1.5
         with:
@@ -48,16 +30,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
-      - name: PWD
-        run: pwd
-
-      - name: List directories in PWD/CLI_PATH
+      - name: Test Policy
         run: |
           CLI_PATH=kyverno/cmd/cli/kubectl-kyverno
-          ls $PWD/$CLI_PATH
-
-      - name: Test Policy
-        run: go run $PWD/$CLI_PATH/main.go test .
+          go run $PWD/$CLI_PATH/main.go test .
       
   # build:
   #   runs-on: ubuntu-latest
