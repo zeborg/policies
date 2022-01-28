@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Kyverno
-        run:
+        run: |
           pwd
           ls
           git clone https://github.com/kyverno/kyverno --branch main
@@ -40,7 +40,7 @@ jobs:
             ${{ runner.os }}-go-
 
       - name: Test Policy
-        run:
+        run: |
           pwd
           ls
 
