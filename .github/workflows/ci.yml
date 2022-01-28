@@ -33,7 +33,7 @@ jobs:
       - name: Test Policy
         run: |
           cd kyverno
-          go run cmd/cli/kubectl-kyverno/main.go test ./policies
+          go run cmd/cli/kubectl-kyverno/main.go test ../policies
       
   # build:
   #   runs-on: ubuntu-latest
