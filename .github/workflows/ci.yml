@@ -14,6 +14,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # v2.4.0
+
       - name: Clone Kyverno
         run: git clone https://github.com/kyverno/kyverno --branch main
 
@@ -30,10 +33,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
+      - name: List directories
+        run: ls
+
       - name: Test Policy
         run: |
           cd kyverno
-          go run cmd/cli/kubectl-kyverno/main.go test ../policies
+          go run cmd/cli/kubectl-kyverno/main.go test ../
       
   # build:
   #   runs-on: ubuntu-latest
